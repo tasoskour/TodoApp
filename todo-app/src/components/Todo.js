@@ -1,15 +1,17 @@
 import React from 'react';
 
 function Todo(props){
+
 const completedStyle={
   color:"gray",
   fontStyle:"italic",
   textDecoration: "line-through"
 }
 
+
 return(
 <div>
-<form action="/action_page.php">
+<form >
     <input
       type="checkbox"
       checked={props.item.completed}
@@ -17,7 +19,7 @@ return(
     />
   <p className="text" style={props.item.completed ? completedStyle:null  }>
       {props.item.text}
-    </p>
+  </p>
 </form>
 <hr/>
 </div>
