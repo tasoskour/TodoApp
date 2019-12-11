@@ -71,6 +71,8 @@ render(){
 
     <Tasks entries={this.state.items}
     delete={this.deleteItem}/>
+    <Task entries={this.state.items}
+    />
   </div>
   )
 }

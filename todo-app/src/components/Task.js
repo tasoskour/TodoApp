@@ -11,9 +11,14 @@ function Task(props) {
     var listItems = todoEntries.map(createTasks);
  
     return (
-      <ul className="theList">
-          {listItems}
+
+<ul className="theList">
+    <div>
+    {listItems}
+</div>
+
       </ul>
+
     );
   
 };
