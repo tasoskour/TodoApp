@@ -14,7 +14,13 @@ delete(key) {
 createTasks(item) {
     return(
     <li onClick={()=>this.delete(item.key)} key={item.key}>
-    {item.text}</li>)
+    {item.text}<h5 className="date">{
+      item.date.getDate() + "/"
+                + (item.date.getMonth()+1)  + "/" 
+                + item.date.getFullYear() + " @ "  
+                + item.date.getHours() + ":"  
+                + item.date.getMinutes() + ":" 
+                + item.date.getSeconds()}</h5></li>)
 }
  
   render() {
@@ -23,8 +29,7 @@ createTasks(item) {
 if(this.props.completed){
     var delItems=this.props.delItems.map(this.createTasks)}
 else {delItems=
-  <li>
-  </li>}
+  <p> Click button to show completed tasks</p>}
 return (
   <div>
       <ul className="theList">
@@ -36,7 +41,7 @@ return (
       </ul>
 
       <ul className="delList">
-        <h5>Completed Tasks</h5>
+          <h5>Completed Tasks</h5>
         <FlipMove duration={250} easing="ease-out">
         {delItems}
   </FlipMove>

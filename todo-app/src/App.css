@@ -13,7 +13,6 @@
 .todoListMain .header button {
   padding: 10px;
   font-size: 16px;
-
   margin-right: 0px;
   background-color: #0066FF;
   color: #FFF;
@@ -32,6 +31,7 @@
   float:left;
 }
  .theList li {
+   font-size: 18px;
   color: #333;
   background-color: rgba(255,255,255,.5);
   padding: 15px;
@@ -70,4 +70,9 @@ display: inline;
 }
 .form{
 display:  inline;
+}
+.date{
+padding: 0px;
+margin:0px;
+font-size: 10px
 }

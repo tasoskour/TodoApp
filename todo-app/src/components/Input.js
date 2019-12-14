@@ -5,6 +5,7 @@ function GetInput(props){
 
     return(
       <div className="todoListMain">
+        <h1>Task Manager</h1>
       <div className="header">
 
     <form className="form" onSubmit={props.clicked} >

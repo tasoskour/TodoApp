@@ -22,11 +22,13 @@ valid:true,
   this.done=this.done.bind(this);
 }
 
-clicked(e) {
+clicked(evt) {
   if (document.getElementById("userInput").value !== "") {
       var newItem = {
         text: document.getElementById("userInput").value,
-        key: Date.now()
+        key: Date.now(),
+        date:new Date()
+
       };
       this.setState((prevState) => {
         return {
@@ -34,11 +36,12 @@ clicked(e) {
           valid:true};
       });
     }
+
     else{
       this.setState({valid:false})
     }
-console.log(this.state.valid);
-  e.preventDefault();
+
+  evt.preventDefault();
 document.getElementById("userInput").value = "";
            }
 
@@ -60,22 +63,9 @@ done(e){
   console.log(this.state.completed)
   e.preventDefault();
 }
-/*handleChange(id){
-  this.setState(prevState=>{
-      const updatedTodo=prevState.todo.map(todo=>{
-        if(todo.id===id){
-        todo.completed=   !todo.completed}
-        return todo})
-    return {
-      todo: updatedTodo
-           }
-  })}
-*/
+
 render(){
 
-/*  const todoItems= this.state.todo.map(item =>
-    <Todo key={item.id} item={item} handleChange={this.handleChange}/>)
-*/
   return(
     <div>
     <Input clicked={this.clicked} completed={this.done}/>
