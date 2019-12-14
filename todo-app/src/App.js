@@ -4,52 +4,63 @@ import Todo from './components/Todo'
 import todoData from './todoData'
 import Input from './components/Input'
 import Tasks from './components/Tasks'
-import Task from './components/Task'
+
 
 class App extends React.Component {
 
 constructor(){
   super()
   this.state={
-
-  todo: todoData,
-  items:[]
+valid:true,
+  items:[],
+  delItems:[],
+  completed:false
              }
-  this.handleChange=this.handleChange.bind(this)
+
   this.clicked=this.clicked.bind(this)
   this.deleteItem = this.deleteItem.bind(this);
+  this.done=this.done.bind(this);
 }
 
 clicked(e) {
-
   if (document.getElementById("userInput").value !== "") {
-
       var newItem = {
         text: document.getElementById("userInput").value,
         key: Date.now()
       };
-
       this.setState((prevState) => {
         return {
-          items: prevState.items.concat(newItem)
-        };
+          items: prevState.items.concat(newItem),
+          valid:true};
       });
     }
-  console.log(this.state.key);
+    else{
+      this.setState({valid:false})
+    }
+console.log(this.state.valid);
+  e.preventDefault();
 document.getElementById("userInput").value = "";
-    e.preventDefault();
            }
 
 deleteItem(key){
+  var deletedItem=this.state.items.filter(item=>item.key===key);
+  this.setState((prevState)=>{return{delItems:prevState.delItems.concat(deletedItem)}})
   var filteredItems = this.state.items.filter(function (item) {
      return (item.key !== key);
    });
-
    this.setState({
      items: filteredItems
    });
 }
-handleChange(id){
+
+done(e){
+  this.setState({
+    completed: !this.state.completed
+  });
+  console.log(this.state.completed)
+  e.preventDefault();
+}
+/*handleChange(id){
   this.setState(prevState=>{
       const updatedTodo=prevState.todo.map(todo=>{
         if(todo.id===id){
@@ -59,20 +70,17 @@ handleChange(id){
       todo: updatedTodo
            }
   })}
-
+*/
 render(){
 
-  const todoItems= this.state.todo.map(item =>
+/*  const todoItems= this.state.todo.map(item =>
     <Todo key={item.id} item={item} handleChange={this.handleChange}/>)
-
+*/
   return(
     <div>
-      <Input clicked={this.clicked}/>
-
-    <Tasks entries={this.state.items}
-    delete={this.deleteItem}/>
-    <Task entries={this.state.items}
-    />
+    <Input clicked={this.clicked} completed={this.done}/>
+  <Tasks entries={this.state.items} delItems={this.state.delItems}
+    delete={this.deleteItem} completed={this.state.completed}/>
   </div>
   )
 }
